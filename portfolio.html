@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Minimalist Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">Studio</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Portfolio</h1>
+                <p class="hero-subtitle">Browse our work</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <!-- Image Slider -->
+                <h2>Featured Projects</h2>
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slide">
+                            <div class="slide-placeholder">Image 1</div>
+                            <h3>Project One</h3>
+                            <p>Add project description here.</p>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-placeholder">Image 2</div>
+                            <h3>Project Two</h3>
+                            <p>Add project description here.</p>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-placeholder">Image 3</div>
+                            <h3>Project Three</h3>
+                            <p>Add project description here.</p>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-placeholder">Image 4</div>
+                            <h3>Project Four</h3>
+                            <p>Add project description here.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slider Controls -->
+                    <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+                    <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+                </div>
+
+                <!-- Slider Dots -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <h2>All Projects</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">Item 1</div>
+                        <h3>Project Name</h3>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">Item 2</div>
+                        <h3>Project Name</h3>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">Item 3</div>
+                        <h3>Project Name</h3>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">Item 4</div>
+                        <h3>Project Name</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Minimalist Studio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

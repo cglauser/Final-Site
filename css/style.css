@@ -1,0 +1,705 @@
+/* ============================================
+   MINIMALIST BLACK & WHITE WEBSITE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #000000;
+    --secondary: #ffffff;
+    --accent: #333333;
+    --light: #f5f5f5;
+    --border: #e0e0e0;
+    --text: #1a1a1a;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--secondary);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* ============================================
+   LAYOUT & CONTAINER
+   ============================================ */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+
+.header {
+    background-color: var(--secondary);
+    border-bottom: 2px solid var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transition);
+    position: relative;
+}
+
+/* Pseudo-element ::before for underline animation */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 100%;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 60px 0;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 60px;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    /* Animation: fade in */
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid var(--primary);
+    /* Pseudo-element ::after for hover effect */
+    position: relative;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary);
+    color: var(--primary);
+    z-index: -1;
+    transition: var(--transition);
+}
+
+.cta-button:hover::after {
+    left: 0;
+}
+
+.cta-button:hover {
+    color: var(--primary);
+    animation: slideInHover 0.3s ease;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.section {
+    padding: 40px 0;
+}
+
+.section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px 0 10px;
+}
+
+.section p {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   VALUES GRID (About Page)
+   ============================================ */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.value-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.value-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.value-card h3 {
+    margin: 0 0 15px;
+}
+
+/* ============================================
+   IMAGE SLIDER (Portfolio Page)
+   ============================================ */
+
+.slider-container {
+    position: relative;
+    margin: 50px 0;
+}
+
+.slider {
+    display: flex;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+}
+
+.slide {
+    min-width: 100%;
+    padding: 40px;
+    text-align: center;
+    background-color: var(--light);
+    /* Animation: smooth transition */
+    transition: transform 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--accent);
+    border: 1px dashed var(--border);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.slide h3 {
+    margin: 20px 0 10px;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
+
+.slider-btn:hover {
+    background-color: var(--accent);
+}
+
+/* Slider Dots */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background-color: var(--primary);
+    transform: scale(1.3);
+}
+
+.dot:hover {
+    background-color: var(--accent);
+}
+
+/* ============================================
+   PORTFOLIO GRID
+   ============================================ */
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.portfolio-item {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.portfolio-image {
+    width: 100%;
+    height: 200px;
+    background-color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.portfolio-item:hover .portfolio-image {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.portfolio-item h3 {
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+}
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.contact-form {
+    background-color: var(--light);
+    padding: 40px;
+    border: 1px solid var(--border);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border);
+    background-color: var(--secondary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group.checkbox-group input {
+    margin: 0;
+    width: auto;
+}
+
+.form-group.checkbox-group label {
+    margin-bottom: 0;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: 2px solid var(--primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pseudo-element ::before for button animation */
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent);
+    z-index: -1;
+    transition: var(--transition);
+}
+
+.submit-btn:hover::before {
+    left: 0;
+}
+
+.submit-btn:hover {
+    animation: pulse 0.3s ease;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background-color: var(--primary);
+    color: var(--secondary);
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 60px;
+    border-top: 2px solid var(--accent);
+}
+
+.footer p {
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Animation 1: Fade In Down */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation 2: Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation 3: Slide In Hover (click/hover activated) */
+@keyframes slideInHover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animation 4: Pulse (button hover) */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLET
+   ============================================ */
+
+@media (max-width: 768px) {
+    .nav {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .slide-placeholder {
+        height: 200px;
+        font-size: 18px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================ */
+
+@media (max-width: 480px) {
+    .header .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .section h2 {
+        font-size: 24px;
+    }
+
+    .section h3 {
+        font-size: 18px;
+    }
+
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 12px;
+    }
+
+    .slider {
+        border: 1px solid var(--primary);
+    }
+
+    .slide {
+        padding: 20px;
+    }
+
+    .slide-placeholder {
+        height: 150px;
+        font-size: 14px;
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .slider-btn.prev {
+        left: 5px;
+    }
+
+    .slider-btn.next {
+        right: 5px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .footer {
+        padding: 30px 0;
+        font-size: 12px;
+    }
+}
