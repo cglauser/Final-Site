@@ -1,0 +1,13 @@
+.Headphones{
+background-color: black;
+height: 1200px;
+}
+
+.Headphones .headphonesDepth{
+        background-size: cover;
+    width: 375px;
+    height: 566px;
+    position: relative;
+
+    background-image: url(../images/headphoneback.png);
+}
