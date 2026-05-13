@@ -199,6 +199,107 @@ body {
     margin-bottom: 20px;
 }
 
+.music-section .music-intro p {
+    max-width: 720px;
+    margin-bottom: 40px;
+}
+
+.album-display {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.album-card {
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    padding: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    display: grid;
+    gap: 20px;
+}
+
+.album-cover {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+}
+
+.album-cover img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.album-meta {
+    display: grid;
+    gap: 12px;
+}
+
+.album-tag {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: var(--light);
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+}
+
+.track-list {
+    display: grid;
+    gap: 20px;
+}
+
+.track-card {
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 18px;
+    display: grid;
+    gap: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.track-info h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.track-meta {
+    margin: 0;
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.track-card audio {
+    width: 100%;
+    border-radius: 12px;
+}
+
+@media (max-width: 960px) {
+    .album-display {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .album-display {
+        gap: 30px;
+    }
+}
+
 /* ============================================
    VALUES GRID (About Page)
    ============================================ */
