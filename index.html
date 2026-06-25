@@ -1,63 +1,296 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Minimalist Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/depth.css">
-    <script src="js/script.js" defer></script>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Door Knocking Tracker</title>
+
+<style>
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    background:#f4f4f4;
+
+    margin:0;
+
+    padding:30px;
+
+}
+
+.container{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+h1{
+
+    text-align:center;
+
+}
+
+.card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:15px 0;
+
+    padding:15px;
+
+    background:#f8f8f8;
+
+    border-radius:10px;
+
+}
+
+button{
+
+    font-size:22px;
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.minus{
+
+    background:#ff6961;
+
+    color:white;
+
+}
+
+.plus{
+
+    background:#4CAF50;
+
+    color:white;
+
+}
+
+.value{
+
+    font-size:28px;
+
+    width:70px;
+
+    text-align:center;
+
+}
+
+.stats{
+
+    margin-top:30px;
+
+    padding:20px;
+
+    background:#eef6ff;
+
+    border-radius:12px;
+
+}
+
+.reset{
+
+    margin-top:20px;
+
+    width:100%;
+
+    height:50px;
+
+    font-size:18px;
+
+    background:#222;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <header class="header">
-        <div class="container">
-            <div class="logo">Calvin Glauser</div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="music.html" class="nav-link">Music</a>
-                <a href="webDev.html" class="nav-link">Skills</a>
-                <a href="portfolio.html" class="nav-link">Portfolio</a>
+<div class="container">
 
-            </nav>
-        </div>
-    </header>
+<h1>🚪 Door Knocking Tracker</h1>
 
-    <main class="main-content">
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">Welcome</h1>
-                <p class="hero-subtitle">This is a reflection of my web development and creative journey.</p>
-                <div class="cta-button"><a href="webDev.html">See Skills</a></div>
-            </div>
-        </section>
+<div id="cards"></div>
 
-        <section class="section">
-            <div class="container">
-                <h2>Featured Content</h2>
-                <p>Add featured content, text, or information here.</p>
-            </div>
-        </section>
-    </main>
+<div class="stats">
 
-    <section class="Headphones">
+<h2>Statistics</h2>
 
-        <div class="headphonesDepth">
-            <h1>MUSIC</h1>
+<p>Answer Rate: <strong id="answerRate">0%</strong></p>
 
-            <img src="images/headphones.png" alt="">
+<p>Decision Maker Rate: <strong id="dmRate">0%</strong></p>
 
+<p>Decision Maker Close Rate: <strong id="closeRate">0%</strong></p>
 
-        </div>
+<p>Knock to Sale Rate: <strong id="overallRate">0%</strong></p>
 
-    </section>
+</div>
 
+<button class="reset" onclick="resetData()">Reset Day</button>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Calvin Glauser. All rights reserved.</p>
-        </div>
-    </footer>
+</div>
+
+<script>
+
+const stats = [
+
+["Doors Knocked","doors"],
+
+["Answered","answered"],
+
+["Decision Makers","dm"],
+
+["Closed","closed"]
+
+];
+
+let data = JSON.parse(localStorage.getItem("tracker")) || {
+
+doors:0,
+
+answered:0,
+
+dm:0,
+
+closed:0
+
+};
+
+const cards=document.getElementById("cards");
+
+stats.forEach(item=>{
+
+cards.innerHTML += `
+
+<div class="card">
+
+<h3>${item[0]}</h3>
+
+<div>
+
+<button class="minus" onclick="change('${item[1]}',-1)">−</button>
+
+<span class="value" id="${item[1]}">${data[item[1]]}</span>
+
+<button class="plus" onclick="change('${item[1]}',1)">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+function change(key,amount){
+
+data[key]+=amount;
+
+if(data[key]<0)data[key]=0;
+
+save();
+
+}
+
+function save(){
+
+localStorage.setItem("tracker",JSON.stringify(data));
+
+for(let key in data){
+
+document.getElementById(key).innerText=data[key];
+
+}
+
+updateStats();
+
+}
+
+function updateStats(){
+
+let answer=(data.doors?data.answered/data.doors*100:0);
+
+let dm=(data.answered?data.dm/data.answered*100:0);
+
+let close=(data.dm?data.closed/data.dm*100:0);
+
+let overall=(data.doors?data.closed/data.doors*100:0);
+
+document.getElementById("answerRate").innerText=answer.toFixed(1)+"%";
+
+document.getElementById("dmRate").innerText=dm.toFixed(1)+"%";
+
+document.getElementById("closeRate").innerText=close.toFixed(1)+"%";
+
+document.getElementById("overallRate").innerText=overall.toFixed(1)+"%";
+
+}
+
+function resetData(){
+
+if(confirm("Reset today's numbers?")){
+
+data={
+
+doors:0,
+
+answered:0,
+
+dm:0,
+
+closed:0
+
+};
+
+save();
+
+}
+
+}
+
+save();
+
+</script>
+
 </body>
-</html>
+
+</html
